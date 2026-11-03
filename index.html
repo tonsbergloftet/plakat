@@ -119,7 +119,8 @@ aside{background:#fff;border-right:1px solid var(--line);overflow-y:auto}
 .page .cta .ct b{display:block;font-weight:700;font-size:1.12em;overflow-wrap:normal;word-break:normal}
 .page .cta .qr{margin-left:auto;background:#fff;border-radius:.5em;padding:.4em;width:5.8em;height:5.8em;flex-shrink:0}
 .page .qr svg{display:block;width:100%;height:100%}
-.page .spacer{margin-top:auto}
+.page .spacer{margin-top:auto;flex:1 0 1.1em}
+.page .push{margin-top:auto}
 .page mark{background:var(--slor-tint);color:inherit;font-weight:700;padding:.04em .1em;margin:0 -.04em;border-radius:.15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .page .p.slutt{font-weight:700}
 .page .tittel.m{font-size:1.7em;line-height:1.15;margin-bottom:.7em}
@@ -3174,20 +3175,20 @@ const ki = (x,y) => kiTag(x,y);
 LAYOUTS.bildedrevet = (uid,f) => {
   const g = G[f], c = SLOR[S.slor], fr = framePath(g.x0,g.y0,g.x1,g.y1,g.r,g.s);
   if(f==='a4'){
-    const veil = `<linearGradient id="${uid}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".55" stop-color="#fff" stop-opacity=".72"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
+    const veil = `<linearGradient id="${uid}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".88"/><stop offset=".5" stop-color="#fff" stop-opacity=".74"/><stop offset=".78" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
     const svg = bg(g,uid, imageIn(uid,fr,g.x0,g.y0,g.x1-g.x0,g.y1-g.y0)
-      + `<rect x="0" y="150" width="${g.W}" height="520" fill="url(#${uid}v)"/>`
+      + `<rect x="0" y="0" width="${g.W}" height="720" fill="url(#${uid}v)"/>`
       + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:862,amp:.62,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), veil);
     return svg + logo(...g.logo) + ki(52,880)
-      + box(85,250,600,380,20,'on-light', stikk()+`<div class="tittel xl">${esc(S.tittel||'')}</div>`+T('ingress','ingress'))
-      + box(85,975,624,100,16,'on-navy', `<div class="spacer"></div>${cta(true)}`);
+      + box(85,236,600,390,20,'on-light', stikk()+`<div class="tittel xl">${esc(S.tittel||'')}</div>`+T('ingress','ingress'))
+      + box(85,975,624,100,16,'on-navy', `<div class="push"></div>${cta(true)}`);
   }
   const shape = `M20,178 C20,160 34,150 52,154 C100,166 140,160 182,120 C228,76 272,40 336,34 C440,26 540,58 566,160 C590,250 548,330 560,430 C572,530 600,610 640,700 L20,700 Z`;
   const svg = bg(g,uid, light(g,uid) + imageIn(uid,shape,20,20,620,680)
     + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:545,amp:.5,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
   return svg + logo(...g.logo) + ki(36,520)
     + box(640,120,580,420,19,'on-light', stikk()+`<div class="tittel xl">${esc(S.tittel||'')}</div>`+T('ingress','ingress'))
-    + box(640,612,580,80,14,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+    + box(640,612,580,80,14,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
 };
 
 /* 2 · Bilde og forklaring (eksempel 02): bilde, budskap i mørkt bånd, to kolonner */
@@ -3202,14 +3203,14 @@ LAYOUTS.forklaring = (uid,f) => {
       + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:1040,amp:.3,flip:true,yBottom:g.y1,back:c.c,front:NAVY}));
     return svg + logo(...g.logo) + ki(52,330)
       + box(85,426,624,222,19,'on-navy', stikk()+tittel()+T('ingress','ingress'))
-      + box(85,740,624,292,16,'on-light', cols([left,right])+`<div class="spacer"></div>`+cta(true,'kort'));
+      + box(85,738,624,288,16,'on-light', cols([left,right])+`<div class="spacer"></div>`+cta(true,'kort'));
   }
   const shape = `M20,178 C20,160 34,150 52,154 C100,166 140,160 182,120 C228,76 262,30 330,26 C410,22 444,80 432,170 C420,262 382,330 398,430 C412,520 436,600 470,700 L20,700 Z`;
   const svg = bg(g,uid, light(g,uid) + imageIn(uid,shape,20,20,460,680)
     + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:560,amp:.45,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
   return svg + logo(...g.logo) + ki(36,520)
     + box(486,44,734,520,16,'on-light', stikk()+tittel()+T('ingress','ingress')+cols([left, T('ut2','h3')+T('tx2','p')]))
-    + box(640,615,580,78,14,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+    + box(640,615,580,78,14,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
 };
 
 /* 3 · Delt (eksempel 03): bilde i venstre kolonne, tekst og faktaboks til høyre */
@@ -3241,14 +3242,14 @@ LAYOUTS.tekst = (uid,f) => {
   if(f==='a4'){
     const svg = bg(g,uid, light(g,uid)+waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:888,amp:.72,flip:true,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
     return svg + logo(...g.logo)
-      + box(85,196,624,668,17,'on-light', stikk()+tittel()+T('ingress','ingress')+T('ut1','h3')+T('tx1','p')+T('ut2','h3')+T('tx2','p')+fakta+praktisk())
-      + box(85,985,624,92,16,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+      + box(85,224,624,640,19,'on-light', stikk()+tittel()+T('ingress','ingress')+T('ut1','h3')+T('tx1','p')+T('ut2','h3')+T('tx2','p')+fakta+praktisk())
+      + box(85,985,624,92,16,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
   }
   const svg = bg(g,uid, light(g,uid)+waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:552,amp:.42,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
   return svg + logo(...g.logo)
-    + box(176,44,1044,170,17,'on-light', stikk()+tittel()+T('ingress','ingress'))
-    + box(70,228,1150,316,15,'on-light', cols([T('ut1','h3')+T('tx1','p'), T('ut2','h3')+T('tx2','p')+fakta, praktisk()]))
-    + box(70,624,1000,70,14,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+    + box(190,82,1030,176,18,'on-light', stikk()+tittel()+T('ingress','ingress'))
+    + box(70,286,1150,264,16,'on-light', cols([T('ut1','h3')+T('tx1','p'), T('ut2','h3')+T('tx2','p')+fakta, praktisk()]))
+    + box(70,624,1000,70,14,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
 };
 
 /* 5 · Flere bilder (eksempel 05): to bilder i organiske former */
@@ -3264,7 +3265,7 @@ LAYOUTS.bilder = (uid,f) => {
     return svg + logo(...g.logo) + ki(56,226)
       + box(80,262,334,436,19,'on-light', stikk()+tittel()+T('ingress','ingress'))
       + box(85,742,624,224,15,'on-light', cols([colA,colB]))
-      + box(85,1008,624,72,15,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+      + box(85,1008,624,72,15,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
   }
   const p1 = `M700,96 C694,54 726,32 780,32 L1196,30 C1232,30 1246,50 1244,90 L1238,236 C1234,290 1190,310 1110,322 L800,370 C746,378 714,350 708,312 Z`;
   const p2 = `M702,500 C698,452 726,424 786,414 L1150,360 C1212,352 1246,380 1245,432 L1245,596 C1245,632 1218,646 1180,646 L766,646 C726,646 706,626 704,592 Z`;
@@ -3272,9 +3273,9 @@ LAYOUTS.bilder = (uid,f) => {
     + imageIn(uid,p1,694,30,552,350,0) + imageIn(uid,p2,698,350,548,300,1)
     + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:592,amp:.4,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
   return svg + logo(...g.logo) + ki(1080,300)
-    + box(150,62,520,300,18,'on-light', stikk()+tittel()+T('ingress','ingress'))
-    + box(66,372,604,218,14,'on-light', cols([colA,colB]))
-    + box(640,628,580,66,14,'on-navy', `<div class="spacer"></div>${cta(true,'bar')}`);
+    + box(190,100,480,272,18,'on-light', stikk()+tittel()+T('ingress','ingress'))
+    + box(66,392,604,200,14,'on-light', cols([colA,colB]))
+    + box(640,628,580,66,14,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
 };
 
 /* 6 · Bilde og QR (ICDP-stil): bilde øverst, slørbølge, tekst på hvitt */
