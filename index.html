@@ -102,7 +102,13 @@ body.har-bank .bankbtn{display:block}
 .warn.on{display:block}
 .note{font-size:12px;color:var(--muted);line-height:1.45;margin-top:8px}
 
-.stage{overflow:auto;display:flex;align-items:center;justify-content:center;padding:28px}
+.stagecol{display:flex;flex-direction:column;min-height:0;min-width:0}
+.tools{display:flex;align-items:center;gap:14px;padding:10px 18px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tools .hint{font-size:13px;color:var(--navy);font-weight:600;margin-right:auto}
+.chk.mini{margin:0;font-size:13px}
+.zoomseg button{padding:6px 12px;font-size:12px;white-space:nowrap}
+.stage{flex:1;overflow:auto;display:flex;align-items:safe center;justify-content:safe center;padding:28px;min-height:0}
+.proto{background:#fff3d6;color:#6b4a00;font-size:13px;padding:10px 12px;border-radius:8px;margin:12px 18px 0;line-height:1.45}
 .stagewrap{position:relative;flex-shrink:0}
 .stagewrap .page{position:absolute;left:0;top:0;transform-origin:0 0;box-shadow:0 8px 30px rgba(1,57,82,.18)}
 
@@ -125,9 +131,9 @@ body.har-bank .bankbtn{display:block}
 .page .ingress{font-style:italic;font-weight:400;font-size:1.22em;line-height:1.38;margin-bottom:1em}
 .page .h3{font-weight:700;font-size:1.12em;line-height:1.25;margin-bottom:.25em}
 .page .p{font-size:1em;line-height:1.45;margin-bottom:.95em;white-space:pre-line}
-.page .liste{list-style:none;margin-bottom:.95em}
-.page .liste li{position:relative;padding-left:1.35em;line-height:1.4;margin-bottom:.32em}
-.page .liste li::before{content:'';position:absolute;left:.2em;top:.48em;width:.56em;height:.56em;border-radius:50%;background:var(--slor-mork)}
+.page .liste{margin-bottom:.95em}
+.page .liste .li{position:relative;padding-left:1.35em;line-height:1.4;margin-bottom:.32em}
+.page .liste .li::before{content:'';position:absolute;left:.2em;top:.48em;width:.56em;height:.56em;border-radius:50%;background:var(--slor-mork)}
 .page .praktisk{margin-bottom:.95em;line-height:1.45}
 .page .praktisk div{margin-bottom:.15em}
 .page .praktisk b{font-weight:700}
@@ -140,6 +146,40 @@ body.har-bank .bankbtn{display:block}
 .page .cta .qr{margin-left:auto;background:#fff;border-radius:.5em;padding:.4em;width:5.8em;height:5.8em;flex-shrink:0}
 .page .qr svg{display:block;width:100%;height:100%}
 .page .spacer{margin-top:auto;flex:1 0 1.1em}
+.page.edit .ed{white-space:pre-line;cursor:text;border-radius:3px;outline:1.5px dashed transparent;outline-offset:3px;transition:outline-color .12s}
+.page.edit .ed:hover{outline-color:rgba(1,57,82,.5)}
+.page.edit .on-navy .ed:hover,.page.edit .qrbadge .ed:hover{outline-color:rgba(255,255,255,.75)}
+.page.edit .ed:focus{outline:2px solid #3d9bd0;outline-offset:3px}
+.page.edit .ed.tom{min-width:3em}
+.page.edit .ed.tom::after{content:attr(data-ph);opacity:.4;white-space:pre-line;pointer-events:none}
+.page.edit .liste.editing{padding-left:1.35em;line-height:1.4}
+.page.edit.skjul-tomme .ed.tom:not(:focus){display:none}
+.page .ctx{display:inline}
+.page.edit .box{pointer-events:none}
+.page.edit .box .ed,.page.edit .box .qr{pointer-events:auto}
+.page.edit svg.bg .klikkbilde{cursor:pointer;transition:filter .15s}
+.page.edit svg.bg .klikkbilde:hover{filter:brightness(1.07) saturate(1.05)}
+.page.edit .qr,.page.edit .qrbadge,.page.edit .avatar-img{cursor:pointer}
+.sec.blink{animation:blink 1.6s ease-out}
+@keyframes blink{0%,40%{background:#fff3d6}100%{background:#fff}}
+@media (prefers-reduced-motion:reduce){.sec.blink{animation:none;outline:3px solid #f1be48}}
+.sumh{cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.sumh span{text-transform:none;letter-spacing:0;font-weight:400;font-size:12px}
+details[open] .sumh{margin-bottom:12px}
+.hjelpbtn{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-family:var(--font);font-size:12px;font-weight:600;color:var(--navy);cursor:pointer}
+.hjelpbtn:hover{border-color:var(--navy)}
+/* Forklaringslag */
+.tour{position:fixed;inset:0;z-index:60;display:none}
+.tour.on{display:block}
+.tour .dim{position:absolute;inset:0;background:rgba(1,30,45,.55)}
+.tour .kort{position:absolute;background:#fff;border-radius:12px;padding:16px 18px;max-width:300px;font-size:14px;line-height:1.45;color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.tour .kort b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+.tour .ring{position:absolute;border:3px solid #f1be48;border-radius:10px;box-shadow:0 0 0 4px rgba(241,190,72,.25);pointer-events:none}
+.tour .kort.pv::before{content:'';position:absolute;left:-12px;top:22px;border:12px solid transparent;border-left:0;border-right-color:#fff}
+.tour .kort.ph::before{content:'';position:absolute;right:-12px;top:22px;border:12px solid transparent;border-right:0;border-left-color:#fff}
+.tour .pil{position:absolute;color:#fff;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.tour .knapp{position:absolute;left:50%;bottom:48px;transform:translateX(-50%);background:#f1be48;color:#1d1d1b;border:0;border-radius:999px;padding:12px 26px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer}
+.tour .knapp:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .page .push{margin-top:auto}
 .page mark{background:var(--slor-tint);color:inherit;font-weight:700;padding:.04em .1em;margin:0 -.04em;border-radius:.15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .page .p.slutt{font-weight:700}
@@ -165,7 +205,7 @@ body.har-bank .bankbtn{display:block}
 .page .on-navy{color:#fff}
 .page .on-navy .stikk{color:var(--slor)}
 .page .on-navy .ingress{color:rgba(255,255,255,.9)}
-.page .on-navy .liste li::before{background:var(--slor)}
+.page .on-navy .liste .li::before{background:var(--slor)}
 .page .on-light .stikk{color:var(--navy)}
 .page .on-light .tittel{color:var(--navy)}
 .page .on-light .h3{color:var(--navy)}
@@ -204,25 +244,8 @@ body.har-bank .bankbtn{display:block}
 
   <div class="warn" id="warn">Noe av teksten får ikke plass, selv med minste skriftstørrelse. Kort ned feltene som er markert med rød stiplet ramme i forhåndsvisningen.</div>
 
-  <div class="sec">
-    <h2>3 · Tekst</h2>
-    <div class="f" data-k="stikk"><label>Tema / stikktittel <span class="h">1–3 ord</span></label><input type="text" id="stikk"></div>
-    <div class="f" data-k="tittel"><label>Tittel <span class="h">maks ca. 8 ord</span></label><textarea id="tittel" rows="2"></textarea></div>
-    <div class="f" data-k="ingress"><label>Ingress <span class="h">1–2 setninger</span></label><textarea id="ingress" rows="2"></textarea></div>
-    <div class="f" data-k="ut1"><label>Underoverskrift 1</label><input type="text" id="ut1"></div>
-    <div class="f" data-k="tx1"><label>Brødtekst 1</label><textarea id="tx1" rows="4"></textarea></div>
-    <div class="f" data-k="pTittel"><label>Overskrift over punktliste</label><input type="text" id="pTittel"></div>
-    <div class="f" data-k="punkter"><label>Punktliste <span class="h">ett punkt per linje</span></label><textarea id="punkter" rows="3"></textarea></div>
-    <div class="f" data-k="ut2"><label>Underoverskrift 2</label><input type="text" id="ut2"></div>
-    <div class="f" data-k="tx2"><label>Brødtekst 2</label><textarea id="tx2" rows="3"></textarea></div>
-    <div class="f" data-k="praktisk"><label>Praktisk informasjon <span class="h">«Tid: …» per linje</span></label><textarea id="praktisk" rows="3"></textarea></div>
-    <div class="f" data-k="cta"><label>Lenketekst</label><input type="text" id="cta"></div>
-    <div class="f" data-k="url"><label>Nettadresse <span class="h">brukes også i QR-koden</span></label><input type="text" id="url"></div>
-    <p class="note">Tomme felt blir ikke vist på plakaten.</p>
-  </div>
-
   <div class="sec" id="sec-img">
-    <h2>4 · Bilde</h2>
+    <h2>3 · Bilde</h2>
     <div class="imgblk" data-n="0">
       <div class="imglbl">Bilde 1</div>
       <button class="btn bankbtn" data-n="0">Velg fra bildebanken</button>
@@ -242,8 +265,8 @@ body.har-bank .bankbtn{display:block}
     <label class="chk" style="margin-top:10px"><input type="checkbox" id="ki"> Merk som KI-generert bilde</label>
   </div>
 
-  <div class="sec">
-    <h2>5 · Slørfarge</h2>
+  <div class="sec" id="sec-slor">
+    <h2>4 · Slørfarge</h2>
     <div class="swatches" id="swatches"></div>
   </div>
 
@@ -276,18 +299,35 @@ body.har-bank .bankbtn{display:block}
     </div>
   </div>
 
-  <div class="sec">
-    <h2>6 · QR-kode</h2>
+  <div class="sec" id="sec-qr">
+    <h2>5 · QR-kode</h2>
     <label class="chk"><input type="checkbox" id="qr" checked> Vis QR-kode til nettadressen</label>
     <div class="f" data-k="qrTekst" id="f-qrtekst"><label>Tekst i QR-merket</label><input type="text" id="qrTekst"></div>
   </div>
 
   <div class="sec">
-    <h2>7 · Last ned</h2>
+    <h2>6 · Last ned</h2>
     <button class="btn pri" id="dlpdf" style="width:100%">Last ned PDF</button>
     <div style="height:8px"></div>
     <div class="row2"><button class="btn" id="dlpng">Last ned PNG</button></div>
     <p class="note" id="dlnote"></p>
+  </div>
+
+  <div class="sec">
+    <details id="alletekst"><summary class="sumh">Alle tekstfelt <span>(teksten skriver du vanligvis rett i plakaten)</span></summary>
+    <div class="f" data-k="stikk"><label>Tema / stikktittel <span class="h">1–3 ord</span></label><input type="text" id="stikk"></div>
+    <div class="f" data-k="tittel"><label>Tittel <span class="h">maks ca. 8 ord</span></label><textarea id="tittel" rows="2"></textarea></div>
+    <div class="f" data-k="ingress"><label>Ingress <span class="h">1–2 setninger</span></label><textarea id="ingress" rows="2"></textarea></div>
+    <div class="f" data-k="ut1"><label>Underoverskrift 1</label><input type="text" id="ut1"></div>
+    <div class="f" data-k="tx1"><label>Brødtekst 1</label><textarea id="tx1" rows="4"></textarea></div>
+    <div class="f" data-k="pTittel"><label>Overskrift over punktliste</label><input type="text" id="pTittel"></div>
+    <div class="f" data-k="punkter"><label>Punktliste <span class="h">ett punkt per linje</span></label><textarea id="punkter" rows="3"></textarea></div>
+    <div class="f" data-k="ut2"><label>Underoverskrift 2</label><input type="text" id="ut2"></div>
+    <div class="f" data-k="tx2"><label>Brødtekst 2</label><textarea id="tx2" rows="3"></textarea></div>
+    <div class="f" data-k="praktisk"><label>Praktisk informasjon <span class="h">«Tid: …» per linje</span></label><textarea id="praktisk" rows="3"></textarea></div>
+    <div class="f" data-k="cta"><label>Lenketekst</label><input type="text" id="cta"></div>
+    <div class="f" data-k="url"><label>Nettadresse <span class="h">brukes også i QR-koden</span></label><input type="text" id="url"></div>
+    </details>
   </div>
 
   <div class="sec">
@@ -300,7 +340,23 @@ body.har-bank .bankbtn{display:block}
   </div>
 </aside>
 
+<div class="stagecol">
+<div class="tools">
+  <span class="hint">Klikk på tekst i plakaten for å skrive · klikk på bildet for å bytte det</span>
+  <button class="hjelpbtn" id="hjelp">Slik virker det</button>
+  <label class="chk mini"><input type="checkbox" id="skjultom"> Skjul tomme felt</label>
+  <div class="seg zoomseg" id="zoom"><button data-z="fit" class="on">Tilpass</button><button data-z="1">100 %</button><button data-z="1.5">150 %</button></div>
+</div>
 <main class="stage" id="stage"><div class="stagewrap" id="wrap"></div></main>
+</div>
+<div class="tour" id="tour" role="dialog" aria-modal="true" aria-label="Slik virker plakatgeneratoren">
+  <div class="dim"></div>
+  <div class="kort k1"><b>Sidepanelet</b>Her velger du mal og format, bytter bilde, velger farge og laster ned plakaten.</div>
+  <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+  <div class="kort k2"><b>Skriv rett i plakaten</b>Klikk på en tekst for å endre den. Grå tekst viser felt som er tomme – de kommer ikke med på den ferdige plakaten.</div>
+  <div class="kort k3"><b>Klikk på bildet</b>Da kommer du rett til bildevalget i sidepanelet. Det samme gjelder QR-koden.</div>
+  <button class="knapp" id="tourok">Skjønner</button>
+</div>
 <div class="modal" id="bank" role="dialog" aria-modal="true" aria-label="Bildebank">
   <div class="mbox">
     <div class="mhead">
@@ -3065,7 +3121,7 @@ const S = {
   cta:'Les mer og meld deg på',
   url:'tonsberg.kommune.no/foreldrekurs',
   qr:true, qrTekst:'SKANN MEG!',
-  imgs:[], ki:false,
+  imgs:[], ki:false, zoom:'fit', skjulTomme:false,
   side2:true, side:1,
   s2Tittel:'Et foreldrekurs for migrasjonsfamilier',
   s2Ut1:'Hva er ICDP-kurs?',
@@ -3139,7 +3195,7 @@ function imageIn(uid, clipD, bx,by,bw,bh, n){
       <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="url(#${id}g)"/>
       <g transform="translate(${cx-k},${cy-k*.8}) scale(${k/12})" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.6" stroke-linejoin="round"><rect x="0" y="0" width="24" height="19" rx="2.5"/><circle cx="8" cy="7" r="2.2"/><path d="M1 17l7-7 5 5 3-3 7 6"/></g>`;
   }
-  return `<clipPath id="${id}c"><path d="${clipD}"/></clipPath><g clip-path="url(#${id}c)">${inner}</g>`;
+  return `<clipPath id="${id}c"><path d="${clipD}"/></clipPath><g clip-path="url(#${id}c)"${EDIT?` class="klikkbilde" data-img="${n||0}"`:''}>${EDIT?'<title>Klikk for å bytte bilde</title>':''}${inner}</g>`;
 }
 
 function qrSvg(){
@@ -3154,30 +3210,55 @@ const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 const KI_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="16" height="14" rx="2"/><circle cx="8" cy="10" r="1.6"/><path d="M3 17l5-4 4 3 3-2 3.5 3"/><path d="M20 2.5v4M18 4.5h4"/></svg>';
 
 const rich = t => esc(t).replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
-function T(k, cls, tag){ return has(k) ? `<${tag||'div'} class="${cls}">${cls==='p'||cls==='p slutt' ? rich(S[k]) : esc(S[k])}</${tag||'div'}>` : ''; }
-function stikk(){ return T('stikk','stikk'); }
-function tittel(){ return has('tittel') ? `<div class="tittel">${esc(S.tittel)}</div>` : ''; }
-function liste(){
-  const pts = String(S.punkter||'').split('\n').map(s=>s.trim()).filter(Boolean);
-  return pts.length ? `<ul class="liste">${pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>` : '';
-}
-function praktisk(){
-  const ls = String(S.praktisk||'').split('\n').map(s=>s.trim()).filter(Boolean);
-  if(!ls.length) return '';
-  return `<div class="praktisk">${ls.map(l=>{
+function urlBreak(u){ return esc(u||'').replace(/([\/.])/g,'$1<wbr>'); }
+
+/* ── Redigering direkte i plakaten ──
+   EDIT er sann bare når forhåndsvisningen bygges. Da blir alle tekstfelt redigerbare,
+   og tomme felt vises med grå hjelpetekst. Miniatyrer og nedlasting bygges uten. */
+let EDIT = false;
+const PH = {
+  stikk:'Tema', tittel:'Skriv en tittel', ingress:'Skriv en kort ingress',
+  ut1:'Underoverskrift', tx1:'Skriv brødtekst', pTittel:'Overskrift over punktene',
+  punkter:'Ett punkt per linje', ut2:'Underoverskrift', tx2:'Skriv brødtekst',
+  praktisk:'Tid: …\nSted: …', cta:'Les mer på', url:'nettadresse', qrTekst:'SKANN MEG!',
+  s2Tittel:'Skriv en tittel', s2Ut1:'Underoverskrift', s2Tx1:'Skriv brødtekst', s2Ut2:'Underoverskrift',
+  s2Tx2:'Skriv brødtekst', s2Tx3:'Mer tekst', s2Slutt:'Avsluttende setning (fet)',
+  s2Merknad:'Kort merknad med pil', s2Kontakt:'Kontaktinformasjon',
+};
+const KIND = {tx1:'rich', tx2:'rich', s2Tx1:'rich', s2Tx2:'rich', s2Tx3:'rich', s2Slutt:'rich', punkter:'list', praktisk:'prak', url:'url'};
+const SINGLE = new Set(['stikk','ut1','ut2','pTittel','cta','url','qrTekst','s2Ut1','s2Ut2','s2Slutt']);
+const hasE = k => EDIT || has(k);
+function disp(k){
+  const v = String(S[k]||''), kind = KIND[k];
+  if(kind==='rich') return rich(v);
+  if(kind==='url') return urlBreak(v);
+  if(kind==='list') return v.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>`<div class="li">${esc(x)}</div>`).join('');
+  if(kind==='prak') return v.split('\n').map(x=>x.trim()).filter(Boolean).map(l => {
     const i = l.indexOf(':');
     return (i>0 && i<24) ? `<div><b>${esc(l.slice(0,i))}:</b>${esc(l.slice(i+1))}</div>` : `<div>${esc(l)}</div>`;
-  }).join('')}</div>`;
+  }).join('');
+  return esc(v);
 }
-function urlBreak(u){ return esc(u||'').replace(/([\/.])/g,'$1<wbr>'); }
+function E(k, cls, tag, style){
+  tag = tag || 'div';
+  if(!EDIT && !has(k)) return '';
+  const ed = EDIT ? ` data-k="${k}" contenteditable="plaintext-only" spellcheck="true" data-ph="${esc(PH[k]||'')}"` : '';
+  return `<${tag} class="${cls||''}${EDIT?' ed':''}${has(k)?'':' tom'}"${ed}${style?` style="${style}"`:''}>${disp(k)}</${tag}>`;
+}
+function T(k, cls, tag){ return E(k, cls, tag); }
+function stikk(){ return E('stikk','stikk'); }
+function tittel(){ return E('tittel','tittel'); }
+function liste(){ return E('punkter','liste'); }
+function praktisk(){ return E('praktisk','praktisk'); }
 function cta(withQr, mode){
-  if(!has('url') && !has('cta')) return '';
+  if(!hasE('url') && !hasE('cta')) return '';
   const q = withQr && S.qr ? qrSvg() : '';
+  const C = E('cta','ctx','span'), U = E('url','u','b');
   if(mode==='bar') // pil | Les mer på adresse  (som i eksempelmalene)
-    return `<div class="cta bar"><div class="pil">${ARROW}</div><div class="skille"></div><div class="ct">${esc(S.cta||'')} <b>${urlBreak(S.url)}</b></div>${q?`<div class="qr">${q}</div>`:''}</div>`;
+    return `<div class="cta bar"><div class="pil">${ARROW}</div><div class="skille"></div><div class="ct">${C} ${U}</div>${q?`<div class="qr">${q}</div>`:''}</div>`;
   if(mode==='kort') // lys boks med QR til venstre
-    return `<div class="cta kort">${q?`<div class="qr">${q}</div><div class="skille"></div>`:`<div class="pil">${ARROW}</div>`}<div class="ct">${esc(S.cta||'')}<b>${urlBreak(S.url)}</b></div></div>`;
-  return `<div class="cta"><div class="pil">${ARROW}</div><div class="ct">${esc(S.cta||'')}<b>${urlBreak(S.url)}</b></div>${q?`<div class="qr">${q}</div>`:''}</div>`;
+    return `<div class="cta kort">${q?`<div class="qr">${q}</div><div class="skille"></div>`:`<div class="pil">${ARROW}</div>`}<div class="ct">${C}${U}</div></div>`;
+  return `<div class="cta"><div class="pil">${ARROW}</div><div class="ct">${C}${U}</div>${q?`<div class="qr">${q}</div>`:''}</div>`;
 }
 function cols(parts){ // kolonner med sløræfarget skillelinje; tomme kolonner droppes
   const ps = parts.filter(x => x && x.trim());
@@ -3212,17 +3293,17 @@ LAYOUTS.bildedrevet = (uid,f) => {
   if(f==='a4'){
     const veil = `<linearGradient id="${uid}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".88"/><stop offset=".5" stop-color="#fff" stop-opacity=".74"/><stop offset=".78" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
     const svg = bg(g,uid, imageIn(uid,fr,g.x0,g.y0,g.x1-g.x0,g.y1-g.y0)
-      + `<rect x="0" y="0" width="${g.W}" height="720" fill="url(#${uid}v)"/>`
+      + `<rect x="0" y="0" width="${g.W}" height="720" fill="url(#${uid}v)" pointer-events="none"/>`
       + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:862,amp:.62,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), veil);
     return svg + logo(...g.logo) + ki(52,880)
-      + box(85,236,600,390,20,'on-light', stikk()+`<div class="tittel xl">${esc(S.tittel||'')}</div>`+T('ingress','ingress'))
+      + box(85,236,600,390,20,'on-light', stikk()+E('tittel','tittel xl')+T('ingress','ingress'))
       + box(85,975,624,100,16,'on-navy', `<div class="push"></div>${cta(true)}`);
   }
   const shape = `M20,178 C20,160 34,150 52,154 C100,166 140,160 182,120 C228,76 272,40 336,34 C440,26 540,58 566,160 C590,250 548,330 560,430 C572,530 600,610 640,700 L20,700 Z`;
   const svg = bg(g,uid, light(g,uid) + imageIn(uid,shape,20,20,620,680)
     + waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:545,amp:.5,flip:false,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
   return svg + logo(...g.logo) + ki(36,520)
-    + box(640,120,580,420,19,'on-light', stikk()+`<div class="tittel xl">${esc(S.tittel||'')}</div>`+T('ingress','ingress'))
+    + box(640,120,580,420,19,'on-light', stikk()+E('tittel','tittel xl')+T('ingress','ingress'))
     + box(640,612,580,80,14,'on-navy', `<div class="push"></div>${cta(true,'bar')}`);
 };
 
@@ -3252,7 +3333,7 @@ LAYOUTS.forklaring = (uid,f) => {
 LAYOUTS.delt = (uid,f) => {
   const g = G[f], c = SLOR[S.slor];
   let imgD, ib, wave, bxh;
-  const fakta = (has('pTittel')||has('punkter')) ? `<div class="faktaboks">${T('pTittel','h3')}${liste()}</div>` : '';
+  const fakta = (hasE('pTittel')||hasE('punkter')) ? `<div class="faktaboks">${T('pTittel','h3')}${liste()}</div>` : '';
   if(f==='a4'){
     const R = 352;
     imgD = `M${g.x0},236 C${g.x0},214 46,204 70,210 C120,224 168,214 214,166 C250,126 272,80 304,64 C332,52 ${R},70 ${R},100 L${R},${g.y1} L${g.x0},${g.y1} Z`;
@@ -3273,7 +3354,7 @@ LAYOUTS.delt = (uid,f) => {
 /* 4 · Tekstdrevet (eksempel 04 og Word-malen): lys flate, mye tekst */
 LAYOUTS.tekst = (uid,f) => {
   const g = G[f], c = SLOR[S.slor];
-  const fakta = (has('pTittel')||has('punkter')) ? T('pTittel','h3')+liste() : '';
+  const fakta = (hasE('pTittel')||hasE('punkter')) ? T('pTittel','h3')+liste() : '';
   if(f==='a4'){
     const svg = bg(g,uid, light(g,uid)+waveLayers({x0:g.x0,w:g.x1-g.x0,yTop:888,amp:.72,flip:true,yBottom:g.y1,back:c.c,front:NAVY}), lightDef(g,uid));
     return svg + logo(...g.logo)
@@ -3323,7 +3404,7 @@ LAYOUTS.bildetekst = (uid,f) => {
     const svg = `<svg class="bg" viewBox="0 0 ${g.W} ${g.H}"><defs><clipPath id="${uid}p"><path d="${fr}"/></clipPath></defs>
       <g clip-path="url(#${uid}p)">${imageIn(uid,fr,g.x0,g.y0,W,620)}</g>
       ${waveLayers({...wave, back:c.c, front:'#ffffff'})}</svg>`;
-    const badge = q ? `<div class="qrbadge" style="left:560px;top:64px;width:186px;height:186px;--qfs:21px"><div class="qr">${q}</div><span>${esc(S.qrTekst||'')}</span></div>` : '';
+    const badge = q ? `<div class="qrbadge" style="left:560px;top:64px;width:186px;height:186px;--qfs:21px"><div class="qr">${q}</div>${E('qrTekst','','span')}</div>` : '';
     const html = stikk()+tittel()+T('ingress','ingress')+T('tx1','p')+praktisk()+cta(false);
     return svg + logo(...g.logo) + badge + kiTag(62, 548) + box(85,628,624,450,18,'on-light',html);
   }
@@ -3334,7 +3415,7 @@ LAYOUTS.bildetekst = (uid,f) => {
   const bandD = `M${ex+40-24},0 C${ex-10-24},120 ${ex+70-24},250 ${ex+18-24},380 C${ex-28-24},500 ${ex+10-24},610 ${ex+46-24},${g.H} L${g.W},${g.H} L${g.W},0 Z`;
   const svg = `<svg class="bg" viewBox="0 0 ${g.W} ${g.H}"><defs><clipPath id="${uid}p"><path d="${fr}"/></clipPath></defs>
     <g clip-path="url(#${uid}p)"><path d="${bandD}" fill="${c.c}"/>${imageIn(uid,imgD,ex-30,g.y0,g.x1-ex+30,g.y1-g.y0)}</g></svg>`;
-  const badge = q ? `<div class="qrbadge" style="left:1050px;top:52px;width:170px;height:170px;--qfs:19px"><div class="qr">${q}</div><span>${esc(S.qrTekst||'')}</span></div>` : '';
+  const badge = q ? `<div class="qrbadge" style="left:1050px;top:52px;width:170px;height:170px;--qfs:19px"><div class="qr">${q}</div>${E('qrTekst','','span')}</div>` : '';
   const html = stikk()+tittel()+T('ingress','ingress')+T('tx1','p')+praktisk()+cta(false);
   // Clip uten utsparing for bildet til høyre: rammen trengs ikke på hvit flate
   return `<svg class="bg" viewBox="0 0 ${g.W} ${g.H}"><path d="${fr}" fill="#fff"/></svg>` + svg + logo(...g.logo) + badge + kiTag(1090,656) + box(66,150,462,540,16,'on-light',html);
@@ -3351,17 +3432,17 @@ LAYOUTS.bildetekst2 = (uid) => {
     const sc = Math.min(iw/I.w, ih/I.h), w = I.w*sc, h = I.h*sc;
     const x = ix + (iw-w)/2, y = iy;
     out += `<svg class="bg" viewBox="0 0 ${g.W} ${g.H}"><defs><clipPath id="${uid}ill"><rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="26"/></clipPath></defs>
-      <image href="${I.src}" x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" clip-path="url(#${uid}ill)" preserveAspectRatio="none"/>
+      <image href="${I.src}" x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" clip-path="url(#${uid}ill)" preserveAspectRatio="none"${EDIT?' class="klikkbilde" data-img="2"':''}/>
       ${has('s2Merknad') ? `<path d="M318,206 C352,178 398,170 ${(x-16).toFixed(0)},182" fill="none" stroke="#1d1d1b" stroke-width="7" stroke-linecap="round"/>
       <path d="M${(x-30).toFixed(0)},166 L${(x-4).toFixed(0)},184 L${(x-32).toFixed(0)},200 Z" fill="#1d1d1b" stroke="#1d1d1b" stroke-width="3" stroke-linejoin="round"/>` : ''}</svg>`;
-    if(has('s2Merknad')) out += `<div class="merknad" style="left:132px;top:258px;width:300px">${esc(S.s2Merknad)}</div>`;
+    if(hasE('s2Merknad')) out += E('s2Merknad','merknad','div','left:132px;top:258px;width:300px');
     top = y + h + 44;
   }
   // Kontaktboks nederst
   let bottom = 1060;
-  if(has('s2Kontakt')){
+  if(hasE('s2Kontakt')){
     const by = 948, bh = 104, withP = !!P.src;
-    out += `<div class="kontakt" style="left:${withP?176:85}px;top:${by}px;width:${withP?544:624}px;height:${bh}px;background:${c.c};padding:0 26px 0 ${withP?120:26}px"><div class="kt">${esc(S.s2Kontakt)}</div></div>`;
+    out += `<div class="kontakt" style="left:${withP?176:85}px;top:${by}px;width:${withP?544:624}px;height:${bh}px;background:${c.c};padding:0 26px 0 ${withP?120:26}px">${E('s2Kontakt','kt')}</div>`;
     if(withP){
       const d = 156, cx = 104, cy = by + bh/2 - d/2 + 8;
       out += `<div class="avatar" style="left:${cx}px;top:${cy}px;width:${d}px;height:${d}px;background:${c.c}"></div>`;
@@ -3370,10 +3451,7 @@ LAYOUTS.bildetekst2 = (uid) => {
     }
     bottom = by - 36;
   }
-  const html = `<div class="tittel m">${esc(S.s2Tittel||'')}</div>`
-    + (has('s2Ut1')?`<div class="h3">${esc(S.s2Ut1)}</div>`:'') + (has('s2Tx1')?`<div class="p">${rich(S.s2Tx1)}</div>`:'')
-    + (has('s2Ut2')?`<div class="h3">${esc(S.s2Ut2)}</div>`:'') + (has('s2Tx2')?`<div class="p">${rich(S.s2Tx2)}</div>`:'')
-    + (has('s2Tx3')?`<div class="p">${rich(S.s2Tx3)}</div>`:'') + (has('s2Slutt')?`<div class="p slutt">${rich(S.s2Slutt)}</div>`:'');
+  const html = E('s2Tittel','tittel m') + E('s2Ut1','h3') + E('s2Tx1','p') + E('s2Ut2','h3') + E('s2Tx2','p') + E('s2Tx3','p') + E('s2Slutt','p slutt');
   return `<svg class="bg" viewBox="0 0 ${g.W} ${g.H}"><path d="${fr}" fill="#fff" stroke="${c.c}" stroke-width="3"/></svg>`
     + logo(...g.logo) + out + box(85, Math.max(top, 210), 624, bottom - Math.max(top, 210), 17, 'on-light s2', html);
 };
@@ -3381,7 +3459,8 @@ LAYOUTS.bildetekst2 = (uid) => {
 /* ═════════ RENDER ═════════ */
 let uidN = 0;
 const hasSide2 = () => S.tpl==='bildetekst' && S.fmt==='a4' && S.side2;
-function buildPage(tpl, fmt, side){
+function buildPage(tpl, fmt, side, edit){
+  EDIT = !!edit;
   const c = SLOR[S.slor];
   const el = document.createElement('div');
   el.className = 'page ' + fmt;
@@ -3389,6 +3468,8 @@ function buildPage(tpl, fmt, side){
   el.style.setProperty('--slor-mork', c.mork);
   el.style.setProperty('--slor-tint', c.tint);
   el.innerHTML = side===2 ? LAYOUTS.bildetekst2('u'+(uidN++)+'_') : LAYOUTS[tpl]('u'+(uidN++)+'_', fmt);
+  EDIT = false;
+  if(edit){ el.classList.add('edit'); if(S.skjulTomme) el.classList.add('skjul-tomme'); }
   return el;
 }
 
@@ -3420,12 +3501,13 @@ function scalePage(page, maxW, maxH){
 
 function render(){
   const wrap = $('wrap'), stage = $('stage');
-  const page = buildPage(S.tpl, S.fmt, hasSide2() && S.side===2 ? 2 : 1);
+  const page = buildPage(S.tpl, S.fmt, hasSide2() && S.side===2 ? 2 : 1, true);
   wrap.innerHTML = '';
   wrap.appendChild(page);
   const over = fit(page);
   $('warn').classList.toggle('on', over);
-  const sc = scalePage(page, stage.clientWidth - 56, stage.clientHeight - 56);
+  const sc = S.zoom === 'fit' ? scalePage(page, stage.clientWidth - 56, stage.clientHeight - 56) : S.zoom;
+  document.querySelectorAll('#zoom button').forEach(b => b.classList.toggle('on', String(S.zoom) === b.dataset.z));
   page.style.transform = `scale(${sc})`;
   wrap.style.width = (page.offsetWidth*sc) + 'px';
   wrap.style.height = (page.offsetHeight*sc) + 'px';
@@ -3540,6 +3622,121 @@ function initUI(){
     const b = BANK.find(x => x.id === it.dataset.id); if(!b) return;
     lukkBank(); await velgBank(bankN, b); if(bankN >= 2) S.side = 2; fillForm(); render();
   };
+  // Redigering direkte i plakaten
+  const wrap = $('wrap');
+  const refit = () => { const p = wrap.querySelector('.page'); if(p) $('warn').classList.toggle('on', fit(p)); };
+  let urlVed = null;
+  wrap.addEventListener('focusin', e => {
+    const el = e.target.closest('.ed'); if(!el) return;
+    const k = el.dataset.k;
+    el.classList.add('editing');
+    el.textContent = S[k] || '';               // råtekst mens man skriver (med **utheving**)
+    if(k === 'url') urlVed = S.url;
+    const r = document.createRange(); r.selectNodeContents(el); r.collapse(false);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  });
+  wrap.addEventListener('input', e => {
+    const el = e.target.closest('.ed'); if(!el) return;
+    const k = el.dataset.k;
+    S[k] = el.innerText.replace(/\n$/, '');
+    el.classList.toggle('tom', !S[k].trim());
+    if($(k)) $(k).value = S[k];
+    refit();
+  });
+  wrap.addEventListener('focusout', e => {
+    const el = e.target.closest('.ed'); if(!el) return;
+    const k = el.dataset.k;
+    el.classList.remove('editing');
+    el.innerHTML = disp(k);
+    el.classList.toggle('tom', !has(k));
+    if(k === 'url' && S.url !== urlVed){
+      // QR-koden må lages på nytt: bygg plakaten og gå videre til feltet brukeren klikket på
+      const neste = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.ed');
+      const nk = neste ? neste.dataset.k : null;
+      setTimeout(() => { render(); if(nk){ const n = wrap.querySelector(`.ed[data-k="${nk}"]`); if(n) n.focus(); } }, 0);
+    } else { refit(); renderThumbs(); }
+  });
+  wrap.addEventListener('keydown', e => {
+    const el = e.target.closest('.ed'); if(!el) return;
+    if(e.key === 'Escape' || (e.key === 'Enter' && SINGLE.has(el.dataset.k))){ e.preventDefault(); el.blur(); }
+  });
+  wrap.addEventListener('paste', e => {
+    const el = e.target.closest('.ed'); if(!el) return;
+    e.preventDefault();
+    let t = (e.clipboardData || window.clipboardData).getData('text/plain') || '';
+    if(SINGLE.has(el.dataset.k)) t = t.replace(/\s*\n\s*/g, ' ');
+    document.execCommand('insertText', false, t);
+  });
+  $('skjultom').onchange = () => { S.skjulTomme = $('skjultom').checked; render(); };
+  // Klikk på bilde eller QR i plakaten → riktig del av sidepanelet
+  const tilPanel = (sec, fokus) => {
+    if(!sec) return;
+    sec.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+    sec.classList.remove('blink'); void sec.offsetWidth; sec.classList.add('blink');
+    if(fokus) setTimeout(() => fokus.focus({preventScroll:true}), 350);
+  };
+  wrap.addEventListener('click', e => {
+    if(e.target.closest('.ed')) return;
+    const bi = e.target.closest('[data-img], .avatar-img');
+    if(bi){
+      const n = bi.classList.contains('avatar-img') ? 3 : +bi.dataset.img;
+      const blk = document.querySelector(`.imgblk[data-n="${n}"]`);
+      tilPanel(n >= 2 ? blk : $('sec-img'), blk && blk.querySelector('.bankbtn:not([style*="none"])') || blk && blk.querySelector('.upl input'));
+      return;
+    }
+    if(e.target.closest('.qr, .qrbadge')) tilPanel($('sec-qr'), $('qr'));
+  });
+  // Forklaring ved første besøk, og ved klikk på «Slik virker det»
+  const TOUR_KEY = 'tk-plakat-sett-forklaring';
+  const bildeRekt = g => {
+    const svg = g.ownerSVGElement, page = g.closest('.page'); if(!svg || !page) return null;
+    let bb;
+    const cpId = (g.getAttribute('clip-path')||'').match(/#([^)]+)/);
+    const cp = cpId && document.getElementById(cpId[1]);
+    try{ bb = (cp && cp.firstElementChild ? cp.firstElementChild : g).getBBox(); }catch(e){ return null; }
+    const s = svg.getBoundingClientRect(), k = s.width / svg.viewBox.baseVal.width, p = page.getBoundingClientRect();
+    const l = Math.max(p.left, s.left + bb.x*k), t = Math.max(p.top, s.top + bb.y*k);
+    const r = Math.min(p.right, s.left + (bb.x+bb.width)*k), b = Math.min(p.bottom, s.top + (bb.y+bb.height)*k);
+    return {left:l, top:t, right:r, bottom:b, width:r-l, height:b-t, stor: (r-l)*(b-t) > .55 * p.width * p.height, page:p};
+  };
+  const plasser = (kort, ring, mal, pad, rekt, side, minY) => {
+    const t = document.querySelector('.tour .' + kort), r = document.querySelector('.tour .' + ring);
+    if(!mal){ t.style.display = r.style.display = 'none'; return; }
+    t.style.display = r.style.display = '';
+    let b = rekt || mal.getBoundingClientRect();
+    const W = innerWidth, H = innerHeight, page = document.querySelector('#wrap .page').getBoundingClientRect();
+    if(b.stor){ // bildet dekker nesten hele plakaten: ingen ring, kortet peker på plakatens nedre del
+      r.style.display = 'none';
+      b = {left:page.left, right:page.right, top:page.top + page.height*.55, bottom:page.top + page.height*.7, width:page.width, height:page.height*.15};
+    } else {
+      Object.assign(r.style, {left:(b.left-pad)+'px', top:(b.top-pad)+'px', width:(b.width+pad*2)+'px', height:(b.height+pad*2)+'px'});
+    }
+    const kw = 270; t.style.maxWidth = kw + 'px';
+    const kh = t.offsetHeight || 120;
+    let x, cls;
+    // Utenfor plakaten når det er plass: tekstkortet til høyre, bildekortet til venstre
+    if(side === 'right' && page.right + 18 + kw < W - 12){ x = page.right + 18; cls = 'pv'; }
+    else if(side === 'left' && page.left - 18 - kw > 12){ x = page.left - 18 - kw; cls = 'ph'; }
+    else { x = Math.min(Math.max(16, b.right + pad + 18), W - kw - 16); cls = ''; }
+    const y = Math.min(Math.max(minY || 16, b.top), H - kh - 100);
+    t.classList.remove('pv','ph'); if(cls) t.classList.add(cls);
+    Object.assign(t.style, {left:x+'px', top:y+'px'});
+  };
+  const visTour = () => {
+    $('tour').classList.add('on');
+    plasser('k1', 'r1', document.querySelector('aside'), -4);
+    plasser('k2', 'r2', document.querySelector('#wrap .tittel.ed') || document.querySelector('#wrap .ed'), 6, null, 'right');
+    const kb = document.querySelector('#wrap .klikkbilde'); plasser('k3', 'r3', kb, 4, kb ? bildeRekt(kb) : null, 'left', document.querySelector('.tour .k1').getBoundingClientRect().bottom + 16);
+    $('tourok').focus();
+  };
+  const lukkTour = () => { $('tour').classList.remove('on'); try{ localStorage.setItem(TOUR_KEY, '1'); }catch(e){} };
+  $('hjelp').onclick = visTour;
+  $('tourok').onclick = lukkTour;
+  $('tour').addEventListener('click', e => { if(e.target.classList.contains('dim')) lukkTour(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && $('tour').classList.contains('on')) lukkTour(); });
+  let sett = false; try{ sett = localStorage.getItem(TOUR_KEY) === '1'; }catch(e){}
+  if(!sett) setTimeout(visTour, 600);
+  document.querySelectorAll('#zoom button').forEach(b => b.onclick = () => { S.zoom = b.dataset.z === 'fit' ? 'fit' : +b.dataset.z; render(); });
   $('dlpdf').onclick = () => exportFile('pdf');
   $('dlpng').onclick = () => exportFile('png');
   $('save').onclick = saveDraft;
